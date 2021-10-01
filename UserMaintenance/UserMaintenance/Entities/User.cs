@@ -22,5 +22,5 @@ namespace UserMaintenance.Entities
                     FirstName);
             }
         }
-    }
+    }   
 }
