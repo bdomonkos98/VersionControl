@@ -48,8 +48,16 @@ namespace UserMaintenance
                     sw.WriteLine(string.Format(
                         "{0};{1}", 
                         u.ID, 
-                        u.FullName));
-           
+                        u.FullName));          
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            var del = listBox1.SelectedItem;
+
+            if (del != null)
+                users.Remove((User)del);
         }
     }
 }
