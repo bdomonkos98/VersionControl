@@ -13,6 +13,9 @@ namespace WebService
 {
     public partial class Form1 : Form
     {
+
+        BindingList<RateData> Rates = new BindingList<RateData>();
+
         public Form1()
         {
             InitializeComponent();
