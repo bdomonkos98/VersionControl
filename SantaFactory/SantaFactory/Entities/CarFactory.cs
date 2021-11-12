@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SantaFactory.Entities
 {
-    public class CarFactory : IToyFactory
+    public class CarFactory : Abstractions.IToyFactory
     {
         public Toy CreateNew()
         {
