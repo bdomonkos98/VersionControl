@@ -9,14 +9,11 @@ using System.Windows.Forms;
 namespace SantaFactory.Entities
 {
     public class Ball : Toy
-    {
-        
+    {       
         protected override void DrawImage(Graphics g)
         {
             g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
-        }
-
-        
+        }      
     }
 
 }
