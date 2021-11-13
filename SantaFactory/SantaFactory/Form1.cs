@@ -32,6 +32,8 @@ namespace SantaFactory
         public Form1()
         {
             InitializeComponent();
+
+            Factory = new CarFactory();
         }
 
         private void createTimer_Tick(object sender, EventArgs e)
@@ -69,7 +71,7 @@ namespace SantaFactory
         {
             Factory = new BallFactory
             {
-                BallColor = btnColor.BackColor
+                BallColor = btnBallColor.BackColor
             };
         }
 
@@ -84,6 +86,37 @@ namespace SantaFactory
         }
 
         private void btnColor_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
+        }
+
+        private void btnSelectPresent_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory
+            {
+                BoxColor = btnBoxColor.BackColor,
+                RibbonColor = btnRibbonColor.BackColor
+            };
+        }
+
+        private void btnRibbonColor_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
+        }
+
+        private void btnBoxColor_Click(object sender, EventArgs e)
         {
             var button = (Button)sender;
             var colorPicker = new ColorDialog();
