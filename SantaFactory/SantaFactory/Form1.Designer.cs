@@ -100,7 +100,7 @@ namespace SantaFactory
             this.btnBallColor.TabIndex = 4;
             this.btnBallColor.Text = "Ball";
             this.btnBallColor.UseVisualStyleBackColor = false;
-            this.btnBallColor.Click += new System.EventHandler(this.btnColor_Click);
+            this.btnBallColor.Click += new System.EventHandler(this.btnBallColor_Click);
             // 
             // btnSelectPresent
             // 

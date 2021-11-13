@@ -85,17 +85,6 @@ namespace SantaFactory
             Controls.Add(_nextToy);
         }
 
-        private void btnColor_Click(object sender, EventArgs e)
-        {
-            var button = (Button)sender;
-            var colorPicker = new ColorDialog();
-
-            colorPicker.Color = button.BackColor;
-            if (colorPicker.ShowDialog() != DialogResult.OK)
-                return;
-            button.BackColor = colorPicker.Color;
-        }
-
         private void btnSelectPresent_Click(object sender, EventArgs e)
         {
             Factory = new PresentFactory
@@ -117,6 +106,17 @@ namespace SantaFactory
         }
 
         private void btnBoxColor_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
+        }
+
+        private void btnBallColor_Click(object sender, EventArgs e)
         {
             var button = (Button)sender;
             var colorPicker = new ColorDialog();
