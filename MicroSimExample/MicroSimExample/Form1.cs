@@ -24,12 +24,10 @@ namespace MicroSimExample
         {
             InitializeComponent();
 
-            Population = GetPopulation(@"C:\Windows\Temp\nép.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\Windows\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Windows\Temp\halál.csv");
 
-            StartSimulation((int)numericUpDown1.Value, textBox1.Text);
-
+            StartSimulation((int)nudYear.Value, txtPath.Text);
         }
 
         private void StartSimulation(int endYear, string csvPath)
@@ -156,12 +154,17 @@ namespace MicroSimExample
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            StartSimulation((int)numericUpDown1.Value, textBox1.Text);
+            StartSimulation((int)nudYear.Value, txtPath.Text);
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
+            var ofd = new OpenFileDialog();
 
+            if (ofd.ShowDialog() != DialogResult.OK)
+                return;
+
+            txtPath.Text = ofd.FileName;
         }
     }
 }

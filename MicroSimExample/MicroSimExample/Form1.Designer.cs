@@ -29,43 +29,43 @@ namespace MicroSimExample
         /// </summary>
         private void InitializeComponent()
         {
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nudYear = new System.Windows.Forms.NumericUpDown();
+            this.txtPath = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.txtMain = new System.Windows.Forms.RichTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudYear)).BeginInit();
             this.SuspendLayout();
             // 
-            // numericUpDown1
+            // nudYear
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(12, 12);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.nudYear.Location = new System.Drawing.Point(12, 12);
+            this.nudYear.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.nudYear.Minimum = new decimal(new int[] {
             2005,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 0;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.nudYear.Name = "nudYear";
+            this.nudYear.Size = new System.Drawing.Size(120, 20);
+            this.nudYear.TabIndex = 0;
+            this.nudYear.Value = new decimal(new int[] {
             2024,
             0,
             0,
             0});
             // 
-            // textBox1
+            // txtPath
             // 
-            this.textBox1.Location = new System.Drawing.Point(138, 11);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(478, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "C:\\Windows\\Temp\\nép-teszt.csv";
+            this.txtPath.Location = new System.Drawing.Point(138, 11);
+            this.txtPath.Name = "txtPath";
+            this.txtPath.Size = new System.Drawing.Size(478, 20);
+            this.txtPath.TabIndex = 1;
+            this.txtPath.Text = "C:\\Windows\\Temp\\nép-teszt.csv";
             // 
             // btnBrowse
             // 
@@ -103,11 +103,11 @@ namespace MicroSimExample
             this.Controls.Add(this.txtMain);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnBrowse);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.txtPath);
+            this.Controls.Add(this.nudYear);
             this.Name = "MicroSimulation";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudYear)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,8 +115,8 @@ namespace MicroSimExample
 
         #endregion
 
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.NumericUpDown nudYear;
+        private System.Windows.Forms.TextBox txtPath;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.RichTextBox txtMain;
