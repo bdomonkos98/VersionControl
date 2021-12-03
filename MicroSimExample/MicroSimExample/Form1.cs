@@ -14,6 +14,8 @@ namespace MicroSimExample
 {
     public partial class Form1 : Form
     {
+        Random rng = new Random(1234);
+
         List<Person> Population = new List<Person>();
         List<BirthProbability> BirthProbabilities = new List<BirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
@@ -60,7 +62,7 @@ namespace MicroSimExample
                     {
                         Age = int.Parse(line[0]),                      
                         NbrOfChildren = int.Parse(line[1]),
-                        BirthP = 
+                        BirthP = double.Parse(line[2])
                     });
                 }
             }
@@ -79,9 +81,9 @@ namespace MicroSimExample
                     var line = sr.ReadLine().Split(';');
                     deathProbabilities.Add(new DeathProbability()
                     {
-                        Gender = (Gender)Enum.Parse(typeof(Gender), line[1]),
-                        Gender = (Gender)Enum.Parse(typeof(Gender), line[1]),
-                        NbrOfChildren = int.Parse(line[2])
+                        Gender = (Gender)Enum.Parse(typeof(Gender), line[0]),
+                        Age = int.Parse(line[1]),                      
+                        DeathP = double.Parse(line[2])
                     });
                 }
             }
