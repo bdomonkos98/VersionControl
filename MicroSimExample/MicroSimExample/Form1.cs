@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace MicroSimExample
 {
-    public partial class Form1 : Form
+    public partial class MicroSimulation : Form
     {
         Random rng = new Random(1234);
 
@@ -20,13 +20,21 @@ namespace MicroSimExample
         List<BirthProbability> BirthProbabilities = new List<BirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
 
-        public Form1()
+        public MicroSimulation()
         {
             InitializeComponent();
 
-            Population = GetPopulation(@"C:\Temp\nép.csv");
-            BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
-            DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+            Population = GetPopulation(@"C:\Windows\Temp\nép.csv");
+            BirthProbabilities = GetBirthProbabilities(@"C:\Windows\Temp\születés.csv");
+            DeathProbabilities = GetDeathProbabilities(@"C:\Windows\Temp\halál.csv");
+
+            StartSimulation((int)numericUpDown1.Value, textBox1.Text);
+
+        }
+
+        private void StartSimulation(int endYear, string csvPath)
+        {
+            Population = GetPopulation(@"C:\Windows\Temp\nép.csv");
 
             for (int year = 2005; year <= 2024; year++)
             {
@@ -47,6 +55,7 @@ namespace MicroSimExample
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
             }
         }
+
         private void SimStep(int year, Person person)
         {
             //Ha halott akkor kihagyjuk, ugrunk a ciklus következő lépésére
@@ -60,6 +69,7 @@ namespace MicroSimExample
             double pDeath = (from x in DeathProbabilities
                              where x.Gender == person.Gender && x.Age == age
                              select x.DeathP).FirstOrDefault();
+
             // Meghal a személy?
             if (rng.NextDouble() <= pDeath)
                 person.IsAlive = false;
@@ -71,6 +81,7 @@ namespace MicroSimExample
                 double pBirth = (from x in BirthProbabilities
                                  where x.Age == age
                                  select x.BirthP).FirstOrDefault();
+
                 //Születik gyermek?
                 if (rng.NextDouble() <= pBirth)
                 {
@@ -120,7 +131,6 @@ namespace MicroSimExample
                     });
                 }
             }
-
             return birthProbabilities;
         }
 
@@ -141,8 +151,17 @@ namespace MicroSimExample
                     });
                 }
             }
-
             return deathProbabilities;
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            StartSimulation((int)numericUpDown1.Value, textBox1.Text);
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
