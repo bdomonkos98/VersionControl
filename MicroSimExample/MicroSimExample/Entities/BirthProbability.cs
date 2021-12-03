@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace MicroSimExample.Entities
 {
-    class BirthProbability
+    public class BirthProbability
     {
+        public int Age { get; set; }
+        public int NbrOfChildren { get; set; }
+        public double BirthP { get; set; }
+
     }
 }

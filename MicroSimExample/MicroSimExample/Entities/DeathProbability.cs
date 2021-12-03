@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace MicroSimExample.Entities
 {
-    class DeathProbability
+    public class DeathProbability
     {
+        public Gender Gender { get; set; }
+        public int Age { get; set; }
+        public double DeathP { get; set; }
     }
 }
