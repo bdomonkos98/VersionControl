@@ -26,11 +26,55 @@ namespace EvolutionExample
         {
             InitializeComponent();
 
+            gc.GameOver += Gc_GameOver;
+
             ga = gc.ActivateDisplay();
             this.Controls.Add(ga);
 
-            gc.AddPlayer();
-            gc.Start(true);
+            for (int i = 0; i < populationSize; i++)
+            {
+                gc.AddPlayer(nbrOfSteps);
+            }
+            
+            gc.Start();
+        }
+
+        private void Gc_GameOver(object sender)
+        {
+            generation++;
+            lblGeneration.Text = generation.ToString() + ". generáció";
+
+            var playerlist = from p in gc.GetCurrentPlayers()
+                             orderby p.GetFitness() descending
+                             select p;
+            var topPerformers = playerlist.Take(populationSize / 2).ToList();
+
+            var winners = from p in topPerformers
+                          where p.IsWinner
+                          select p;
+            if (winners.Count() > 0)
+            {
+                gc.GameOver -= Gc_GameOver;
+                return;
+            }
+
+            gc.ResetCurrentLevel();
+            foreach (var p in topPerformers)
+            {
+                var brain = p.Brain.Clone();
+                if (generation % 3 == 0)
+                    gc.AddPlayer(brain.ExpandBrain(nbrOfStepsIncrement));
+                else
+                    gc.AddPlayer(brain);
+
+                if (generation % 3 == 0)
+                    gc.AddPlayer(brain.Mutate().ExpandBrain(nbrOfStepsIncrement));
+                else
+                    gc.AddPlayer(brain);
+
+            }
+
+            gc.Start();
         }
     }
 }
