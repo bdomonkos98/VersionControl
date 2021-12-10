@@ -22,6 +22,8 @@ namespace EvolutionExample
         int nbrOfStepsIncrement = 10;
         int generation = 1;
 
+        Brain winnerBrain = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -47,14 +49,18 @@ namespace EvolutionExample
             var playerlist = from p in gc.GetCurrentPlayers()
                              orderby p.GetFitness() descending
                              select p;
+
             var topPerformers = playerlist.Take(populationSize / 2).ToList();
 
             var winners = from p in topPerformers
                           where p.IsWinner
                           select p;
+
             if (winners.Count() > 0)
             {
+                winnerBrain = winners.FirstOrDefault().Brain.Clone();
                 gc.GameOver -= Gc_GameOver;
+                btnStart.Visible = true;
                 return;
             }
 
@@ -70,11 +76,19 @@ namespace EvolutionExample
                 if (generation % 3 == 0)
                     gc.AddPlayer(brain.Mutate().ExpandBrain(nbrOfStepsIncrement));
                 else
-                    gc.AddPlayer(brain);
-
+                    gc.AddPlayer(brain.Mutate());
             }
 
             gc.Start();
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            ga.Focus();
+            gc.Start(true);
         }
     }
 }
